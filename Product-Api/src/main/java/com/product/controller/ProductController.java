@@ -49,7 +49,7 @@ public class ProductController {
 
 	@Operation(summary = "Create a new product")
 	    @PostMapping("/save")
-	    public ResponseEntity<Product> create(@RequestBody Product product) {
+	    public ResponseEntity<Product> create(@Valid @RequestBody Product product) {
 		log.info("Creating product with name={}", product.getName());
 	        Product created = productService.create(product);
 	        log.debug("Created product: {}", created);
@@ -58,7 +58,7 @@ public class ProductController {
 
 	@Operation(summary = "Update an existing product")
 	    @PutMapping("/update/{id}")
-	    public ResponseEntity<Product> update(@PathVariable Long id,@RequestBody Product product) {
+	    public ResponseEntity<Product> update(@PathVariable Long id,@Valid @RequestBody Product product) {
 		log.info("Updating product id={}", id);
 	        return ResponseEntity.ok(productService.update(id, product));
 	    }
@@ -72,3 +72,4 @@ public class ProductController {
 	    }
 
 }
+
